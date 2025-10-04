@@ -2,7 +2,7 @@ use rand::Rng;
 use std::cmp::Ordering;
 use std::io;
 
-pub fn do_guessing_game() {
+pub fn guessing_game() {
     println!("Guess the number!");
     println!("Please input your guess.");
 
@@ -19,6 +19,8 @@ pub fn do_guessing_game() {
             .expect("Failed to read line");
 
         // shadowing
+        // 表达式和语句，如果没有 ; 就是表达式，能被返回，如果携带了 ; 就是语句，无法被返回
+        // 所以 Ok(num) => { num } num 不能携带 ;
         let guess: u32 = match guess.trim().parse(){
             Ok(num) => {
                 num
