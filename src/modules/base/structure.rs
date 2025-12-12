@@ -6,9 +6,11 @@ struct Person {
 
 // 单元结构体
 struct Unit;
+impl Unit {}
 
 // 元组结构体
 struct Pair(i32, f32);
+impl Pair {}
 
 // 带有两个字段的结构体
 struct Point {

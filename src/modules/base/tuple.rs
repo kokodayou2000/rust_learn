@@ -8,6 +8,7 @@ fn reverse(pair: (i32, bool)) -> (bool, i32) {
 
 // 在 “动手试一试” 的练习中要用到下面这个结构体。
 #[derive(Debug)]
+#[warn(unused_variables)]
 struct Matrix(f32, f32, f32, f32);
 
 pub fn tuple_test() {

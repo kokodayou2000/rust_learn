@@ -56,7 +56,7 @@ mod tests{
 
     #[test]
     fn t1() {
-        let (p1) = diff_java_override_to_string(String::from("Tom"),Gender::Female);
+        let p1 = diff_java_override_to_string(String::from("Tom"),Gender::Female);
         assert_eq!(p1.to_string(), "(Tom, Female)");
     }
 }

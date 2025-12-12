@@ -1,4 +1,3 @@
-use std::iter::Scan;
 use std::ops::Bound;
 use std::path::{PathBuf};
 use crate::modules::projects::bitcask::common::{KeyDir, MERGE_FILE_EXT};
@@ -47,7 +46,7 @@ impl MiniBitcask {
         Ok(())
     }
 
-    pub fn set(&mut self,key: &[u8],value: Vec<u8>) -> Result<()>{
+    pub fn set(&mut self,_: &[u8],_: Vec<u8>) -> Result<()>{
         Ok(())
     }
     pub fn get(&mut self,key: &[u8]) -> Result<Option<Vec<u8>>> {
