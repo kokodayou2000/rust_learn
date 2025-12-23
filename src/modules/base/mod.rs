@@ -4,3 +4,4 @@ pub mod structure;
 mod trait_feature;
 mod lifecycle;
 mod async_feature;
+mod smart_pointer;
