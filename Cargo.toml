@@ -4,9 +4,38 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-rand = "0.9.2"
 log = "0.4.21"
 fs4 = "0.8.2"
 async-std = "1.13.2"
 async-trait = "0.1.89"
 tokio = { version = "1.49.0", features = ["full"] }
+
+
+bytes = "1.0"
+chrono = { version = "0.4.34", default-features = false, features = ["clock"] }
+futures = "0.3"
+http = "1.2.0"
+humantime = "2.1"
+itertools = "0.14.0"
+parking_lot = { version = "0.12" }
+percent-encoding = "2.1"
+thiserror = "2.0.2"
+tracing = { version = "0.1" }
+url = "2.2"
+walkdir = { version = "2", optional = true }
+
+# Cloud storage support
+base64 = { version = "0.22", default-features = false, features = ["std"], optional = true }
+form_urlencoded = { version = "1.2", optional = true }
+http-body-util = { version = "0.1.2", optional = true }
+httparse = { version = "1.8.0", default-features = false, features = ["std"], optional = true }
+hyper = { version = "1.2", default-features = false, optional = true }
+md-5 = { version = "0.10.6", default-features = false, optional = true }
+quick-xml = { version = "0.38.0", features = ["serialize", "overlapped-lists"], optional = true }
+rand = { version = "0.9.2" }
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls-native-roots", "http2"], optional = true }
+ring = { version = "0.17", default-features = false, features = ["std"], optional = true }
+rustls-pki-types = { version = "1.9", default-features = false, features = ["std"], optional = true }
+serde = { version = "1.0", default-features = false, features = ["derive"], optional = true }
+serde_json = { version = "1.0", default-features = false, features = ["std"], optional = true }
+serde_urlencoded = { version = "0.7", optional = true }
