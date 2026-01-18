@@ -71,6 +71,8 @@ impl Deref for AttributeValue {
 #[derive(Debug, Default, Eq, PartialEq, Clone)]
 pub struct Attributes(HashMap<Attribute, AttributeValue>);
 
+/// 对 attributes 进行封装，让
+/// attributes 本身有 hashmap对封装
 impl Attributes {
     pub fn new() -> Self {
         Self::default()
@@ -151,14 +153,58 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_attribute_value() {
-        let v1 = AttributeValue::from("test");
-        let v2 = AttributeValue::from(String::from("test"));
-        assert_eq!(v1.as_ref(), "test");
-        assert_eq!(v2.as_ref(), "test");
-        assert_eq!(v1, v2);
-    }
+    fn test_attributes_basic() {
+        let mut attributes = Attributes::from_iter([
+            (Attribute::ContentDisposition, "inline"),
+            (Attribute::ContentEncoding, "gzip"),
+            (Attribute::ContentLanguage, "en-US"),
+            (Attribute::ContentType, "test"),
+            (Attribute::CacheControl, "control"),
+            (Attribute::Metadata("key1".into()), "value1"),
+        ]);
 
-    #[test]
-    fn test_map_iter() {}
+        assert!(!attributes.is_empty());
+        assert_eq!(attributes.len(), 6);
+
+        assert_eq!(
+            attributes.get(&Attribute::ContentType),
+            Some(&"test".into())
+        );
+
+        let metav = "control".into();
+        assert_eq!(attributes.get(&Attribute::CacheControl), Some(&metav));
+        assert_eq!(
+            attributes.insert(Attribute::CacheControl, "v1".into()),
+            Some(metav)
+        );
+        assert_eq!(attributes.len(), 6);
+
+        assert_eq!(
+            attributes.remove(&Attribute::CacheControl).unwrap(),
+            "v1".into()
+        );
+        assert_eq!(attributes.len(), 5);
+
+        let metav: AttributeValue = "v2".into();
+        attributes.insert(Attribute::CacheControl, metav.clone());
+        assert_eq!(attributes.get(&Attribute::CacheControl), Some(&metav));
+        assert_eq!(attributes.len(), 6);
+
+        assert_eq!(
+            attributes.get(&Attribute::ContentDisposition),
+            Some(&"inline".into())
+        );
+        assert_eq!(
+            attributes.get(&Attribute::ContentEncoding),
+            Some(&"gzip".into())
+        );
+        assert_eq!(
+            attributes.get(&Attribute::ContentLanguage),
+            Some(&"en-US".into())
+        );
+        assert_eq!(
+            attributes.get(&Attribute::Metadata("key1".into())),
+            Some(&"value1".into())
+        );
+    }
 }
