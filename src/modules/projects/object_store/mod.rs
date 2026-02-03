@@ -1,9 +1,0 @@
-mod lib;
-mod tags;
-mod attributes;
-mod buffered;
-mod path;
-mod payload;
-mod aws;
-mod util;
-mod upload;
