@@ -7,3 +7,4 @@ mod async_feature;
 mod smart_pointer;
 
 mod owner_ship;
+mod cloned;
